@@ -1,6 +1,5 @@
 # Guide For VM Creation.
 
-This is a guide for creating Virtual Machine in DRAKVUF and then creating it's restore point.
 
 ***Note:*** It's only applicable if DRAKVUF is already installed.
 
