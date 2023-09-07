@@ -1,7 +1,7 @@
 # Guide For VM Creation.
 
 
-***Note:*** It's only applicable if DRAKVUF is already installed.
+**Note:** It's only applicable if DRAKVUF is already installed.
 
 
 ### Step 1: To remove previous VM:
