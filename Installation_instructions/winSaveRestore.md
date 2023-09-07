@@ -1,4 +1,4 @@
-# Guide For VM And Restore Point Creation.
+# Guide For VM Creation.
 
 This is a guide for creating Virtual Machine in DRAKVUF and then creating it's restore point.
 
@@ -88,27 +88,6 @@ gvncviewer localhost
 
 
 
-### Step 4: Creation of restore point:
-
-```
-cd drakvuf
-```
-
-```
-sudo xl save domain id snapshot.sav /etc/xen/win7.cfg
-```
-
-- **To restore the VM:**
-
-```
-sudo xl restore /etc/xen/win7.cfg snapshot.sav
-```
-
-- **To check process list of VM:**
-  
-```
-sudo vmi-process-list windows7-sp1
-```
 
 
 
