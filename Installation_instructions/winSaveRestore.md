@@ -4,12 +4,12 @@
 **Note:** It's only applicable if DRAKVUF is already installed.
 
 
-### Step 1: To remove previous VM:
+## Step 1: To remove previous VM:
 ```
 sudo lvremove windows7-sp1 vg
 ```
 
-### Step 2: Navigate to Disks, select partition 4, access aditional settings, choose format partition as shown in below images.
+## Step 2: Navigate to Disks, select partition 4, access aditional settings, choose format partition as shown in below images.
 
 <img title="Image 1" alt="Figure 1" src="/Installation_instructions/images/disks.png" width="650" height="500">
 
@@ -22,7 +22,7 @@ sudo lvremove windows7-sp1 vg
 
 <img title="Image 4" alt="Figure 4" src="/Installation_instructions/images/disks3.png" width="650" height="500">
 
-- **It will start formatting partition 4.**
+- It will start formatting partition 4.
 
 ### Step 3: After successfully formatting the partition 4, open terminal and run following commands:
 
@@ -42,7 +42,7 @@ sudo lvcreate -L110G -n windows7-sp1 vg
 sudo gedit /etc/xen/win7.cfg
 ```
 
-- **Configure the windows specification.**
+- Configure the windows specification.
 
 ```
 arch = 'x86_64'
@@ -81,9 +81,11 @@ sudo xl create /etc/xen/win7.cfg
 gvncviewer localhost
 ```
 
- - **Install and Setup the windows.**
+ - Install and Setup the windows.
 
 <img title="Image 5" alt="windows installation" src="/Installation_instructions/images/windows.png" width="650" height="500">
+
+- VM is successfully created.
 
 
 
