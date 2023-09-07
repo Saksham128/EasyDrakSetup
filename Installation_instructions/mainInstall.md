@@ -24,26 +24,15 @@ Drakvuf is a black box binary dynamic malware analysis tool. It works on the pri
 
 - In Installation type, select the "Something else option.
 
-![Installation](/images/3.png)
+<img title="Installation Type" alt="Select 'something else' option." src="/Installation_instructions/images/3.png" width="650" height="500">
 
 - Now create the EFI system partition, swap memory partition and the main system space for DOM0 XEN installation.
   Note: While allocating the space for the VM or LVM make sure you will not mount that partition.
 
-![Installation](/images/7.png)
+<img title="Image 1" alt="Size partion of disk" src="/Installation_instructions/images/size.png" width="650" height="500">
 
-![Installation](/images/8.png)
+- Click on the 'Install Now' button.
 
-![Installation](/images/9.png)
-
-![Installation](/images/10.png)
-
-![Installation](/images/11.png)
-
-![Installation](/images/5.png)
-
-- Click on the Install button.
-
-![Installation](/images/6.png)
 
 ## Dependencies and Packages Installation
 
@@ -59,7 +48,7 @@ sudo apt upgrade -y
 Now install the required Dependencies.
 
 ```bash
-sudo apt-get install wget git bcc bin86 gawk bridge-utils iproute2 libcurl4-openssl-dev bzip2 libpci-dev build-essential make gcc clang libc6-dev linux-libc-dev zlib1g-dev libncurses5-dev patch libvncserver-dev libssl-dev libsdl-dev iasl libbz2-dev e2fslibs-dev git-core uuid-dev ocaml libx11-dev bison flex ocaml-findlib xz-utils gettext libyajl-dev libpixman-1-dev libaio-dev libfdt-dev cabextract libglib2.0-dev autoconf automake libtool libjson-c-dev libfuse-dev liblzma-dev autoconf-archive kpartx python3-dev python3-pip golang python-dev libsystemd-dev nasm ninja-build -y
+sudo apt-get install wget git bcc bin86 gawk bridge-utils iproute2 libcurl4-openssl-dev bzip2 libpci-dev build-essential make gcc clang libc6-dev linux-libc-dev zlib1g-dev libncurses5-dev patch libvncserver-dev libssl-dev libsdl-dev iasl libbz2-dev e2fslibs-dev git-core uuid-dev ocaml libx11-dev bison flex ocaml-findlib xz-utils gettext libyajl-dev libpixman-1-dev libaio-dev libfdt-dev cabextract libglib2.0-dev autoconf automake libtool libjson-c-dev libfuse-dev liblzma-dev autoconf-archive kpartx python3-dev python3-pip golang python-dev libsystemd-dev nasm ninja-build lvm2 bridge-utils net-tools virt-manager gvncviewer -y
 ```
 
 pip3 command is used to install those dependency packages which old and cannot be installed from apt command.
