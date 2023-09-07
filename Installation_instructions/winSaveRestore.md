@@ -20,9 +20,10 @@ sudo lvremove windows7-sp1 vg
 
 
 
-#### It will start formatting partition 4.
+
 <img title="Image 4" alt="Figure 4" src="/Installation_instructions/images/disks3.png" width="650" height="500">
 
+- **It will start formatting partition 4.**
 
 ### Step 3: After successfully formatting the partition 4, open terminal and run following commands:
 
@@ -42,7 +43,7 @@ sudo lvcreate -L110G -n windows7-sp1 vg
 sudo gedit /etc/xen/win7.cfg
 ```
 
-#### Configure the windows specification.
+- **Configure the windows specification.**
 
 ```
 arch = 'x86_64'
@@ -81,7 +82,7 @@ sudo xl create /etc/xen/win7.cfg
 gvncviewer localhost
 ```
 
-#### Install and Setup the windows.
+ - **Install and Setup the windows.**
 
 <img title="Image 5" alt="windows installation" src="/Installation_instructions/images/windows.png" width="650" height="500">
 
@@ -97,13 +98,13 @@ cd drakvuf
 sudo xl save domain id snapshot.sav /etc/xen/win7.cfg
 ```
 
-#### To restore the VM:
+- **To restore the VM:**
 
 ```
 sudo xl restore /etc/xen/win7.cfg snapshot.sav
 ```
 
-#### To check process list of VM:
+- **To check process list of VM:**
   
 ```
 sudo vmi-process-list windows7-sp1
