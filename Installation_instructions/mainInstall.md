@@ -1,35 +1,32 @@
 # About
 
-This repository contains the installation procedure of the Drakvuf, A VMI based black-box malware analysis tool. Drakvuf allows the execution of the malware binaries without using any third party tools. It uses the XEN Hypervisor which is installed in the DOM0 environment and Analysis part of the malware is done in the DOM1, DOM2 and so on.
+This repository contains the installation procedure of the DRAKVUF and an automated installation debian package. DRAKVUF is a VMI based black-box malware analysis tool that allows the execution of the malware binaries without using any third party tools. It uses the XEN Hypervisor which is installed in the DOM0 environment and Analysis part of the malware is done in the DOM1, DOM2 and so on.
 
 # Drakvuf Installation
 
 Drakvuf is a black box binary dynamic malware analysis tool. It works on the principle of the VMI (Virtual Machine Introspection).
 
 1. Make sure to disable the "Secure Boot" from the BIOS.
-2. While Installating the ubuntu make at least 200 GB space free for LVM group.
+2. While Installating the ubuntu make at least 100 GB space free for LVM group.
 
 ## Installation
+⚠ Disclaimer: This installation procedure has been tested on our PCs and works perfectly fine acording to our requirements. Changes can be made to setup and build according to your preferences.
+
+### Our system configuration
+- CPU: Intel(R) Core(TM) i7-10700 @ 2.90GHz
+- Memory: 16GiB DDR4 3200 MHz
+- Storage: HP SSD S700 500G
+- OS: Ubuntu 20.04.6 LTS Focal Fossa
 
 ## Operating System Configuration
 
 - Before installing the drakvuf you have to make sure, that partition in the system for the LVM and system space.
 
-<!-- ![Installation] -->
-
-- Make sure to check all the boxes as per the below image before proceeding furthur. However it not mandatory but still it helps to install the latest verison of software.
-
-![Installation](images/2.png)
-
-- In Installation type, select the Something else option.
+- In Installation type, select the "Something else option.
 
 ![Installation](/images/3.png)
 
-- If you already have something installed lvm partition you run the following command to delete it.
-
-![Installation](/images/4.png)
-
-- Now create the "swap" space, efi space and the main system space for DOM0 XEN installation.
+- Now create the EFI system partition, swap memory partition and the main system space for DOM0 XEN installation.
   Note: While allocating the space for the VM or LVM make sure you will not mount that partition.
 
 ![Installation](/images/7.png)
@@ -50,7 +47,7 @@ Drakvuf is a black box binary dynamic malware analysis tool. It works on the pri
 
 ## Dependencies and Packages Installation
 
-These commands works fine with Debian based linux distro. We have used the Ubuntu 20.04 Focal Fossa operating system. First install the required dependencies.
+These commands works fine with Debian based linux distro. First install the required dependencies.
 
 First Update your linux system:
 
