@@ -75,7 +75,7 @@ make -j4 debball
 
 ## XEN Installation
 
-Now we have to install "Xen" with dom0 getting 4GB RAM assigned and two dedicated CPU cores. You can modify these configuration according to your need. At last update the Grub and reboot the system.
+Now we have to install "Xen" with dom0 getting sufficient RAM and CPU cores. You can modify these configuration according to your need. At last update the Grub and reboot the system.
 
 ```bash
 sudo su
@@ -132,13 +132,8 @@ Name                                        ID   Mem    VCPUs 	 State	 Time(s)
 Domain-0                                       0  4096     2       r-----    614.0
 ```
 
-## Logical Volume Manager(LVM Setup and Installation)
+## Logical Volume Manager(LVM Setup)
 
-First install the lvm2
-
-```bash
-sudo apt-get install lvm2 -y
-```
 
 Note: Before creating physical volume (PV), Go inside Disk partition and create a volume. Never give the whole path of disk like /dev/sda otherwise your os will be crashed down. So when you will create a volume then it has named like /dev/sd2 or /dev/sd3 and so on. So pick only a free volume then move ahead.
 
@@ -160,31 +155,23 @@ Create one volume Group.
 sudo vgcreate vg /dev/sda4
 ```
 
-Create logical volume group. You can specify the size, here we allocating 110 GB space, you can change it by altering the the size of '100'.
+Create logical volume group. You can specify the size, here we allocating 100 GB space, you can change it by altering the the size of '100'.
 
 ```bash
 sudo lvcreate -L100G -n windows7-sp1 vg
 ```
 
-## Install the VMM Utility tool And Networking tool.
+## Check the VMM Utility tool And Networking tool.
 
-Now Install the VMM utility from the Ubuntu snap store or through command line.
 
-```bash
-sudo apt install virt-manager
-```
+
+
 
 ## Newtworking Configuration
 
-Now install the networking tool.
-
 Next we need to set up our system so that we can attach virtual machines to the external network. This is done by creating a virtual switch within dom0. The switch will take packets from the virtual machines and forward them on to the physical network so they can see the internet and other machines on your network.
 
-The piece of software we use to do this is called the Linux bridge and its core components reside inside the Linux kernel. In this case, the bridge acts as our virtual switch. The Debian kernel is compiled with the Linux bridging module so all we need to do is install the control utilities:
-
-```bash
-sudo apt-get install bridge-utils
-```
+The piece of software we use to do this is called the Linux bridge and its core components reside inside the Linux kernel. In this case, the bridge acts as our virtual switch. The Debian kernel is compiled with the Linux bridging module.
 
 Management of the bridge is usually done using the brctl command. The initial setup for our Xen bridge, though, is a "set it once and forget it" kind of thing, so we are instead going to configure our bridge through Debian’s networking infrastructure. It can be configured via /etc/network/interfaces.
 
@@ -206,7 +193,11 @@ Breaking it down,
 
 We are going to edit this file so it resembles such:
 
-Note: Change according to your network interface (run “ifconfig”).
+Note: Change according to your network interface <br> ***Run “ifconfig” in a new terminal tab***.
+
+```bash
+ifconfig
+```
 
 Copy the following text and paste it in the interfaces files.
 
@@ -257,7 +248,7 @@ virbr0          8000.4ccc6ad1847d       yes              virbr0-nic
 
 The networking service can now be set to start automatically whenever the system is rebooted. Please review the installation instructions once again if you are having trouble getting this type of output.
 
-## Download link for windows 7 iso:
+## Download link for Windows iso:
 
 Before proceeding furthur we need 64-bit windows 7 iso image. You can download from anywhere or can find the already tested image from [Here](https://drive.google.com/drive/folders/1dWSDHGIdmVdWbnbU3AfEzrsPCRPaCxam).
 
@@ -274,10 +265,10 @@ This template is used for creating the Configurtion for Windows 7 VM from the do
 ```bash
 arch = 'x86_64'
 name = "windows7-sp1"
-maxmem = 3000
-memory = 3000
-vcpus = 2
-maxvcpus = 2
+maxmem = 2048
+memory = 2048
+vcpus = 4
+maxvcpus = 4
 builder = "hvm"
 boot = "cd"
 hap = 1
@@ -295,10 +286,10 @@ viridian = 1
 altp2m = 2
 shadow_memory = 32
 vif = [ 'type=ioemu,model=e1000,bridge=virbr0,mac=48:9e:bd:9e:2b:0d']
-disk = [ 'phy:/dev/vg/windows7-sp1,hda,w', 'file:/home/pc-1/Downloads/windows7.iso,hdc:cdrom,r' ]
+disk = [ 'phy:/dev/vg/windows7-sp1,hda,w', 'file:/home/pc-01/Downloads/windows7.iso,hdc:cdrom,r' ]
 ```
 
-Note: Make changes according to your file path of windows iso image and mac address.
+***Note: Make changes according to your file path of windows iso image and mac address.<br>Your mac address value is the ether value of your ethernet interface. Run: ifconfig***
 
 ## Clone LibVMI and Installation
 
@@ -342,15 +333,6 @@ sudo make install
 sudo echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/local/lib" >> ~/.bashrc
 ```
 
-Other commands to run:
-
-```bash
-cd ~/drakvuf/libvmi
-./autogen.sh
-./configure –disable-kvm
-sudo xl list
-```
-
 ## Clone Volatility and Installation
 
 ```bash
@@ -367,26 +349,29 @@ Last step of this configuration is to create Windows 7 VM using the following co
 sudo xl create /etc/xen/win7.cfg
 ```
 
-In order to login into the virtual machine you have created, you first have to install the "gvncviewer".
-
-```bash
-sudo apt install gvncviewer
-```
-
 We have noticed that sometimes the PDB GUID are different before installation and after installation of Windows. So we prefer Installing it first and then creatng  JSON file of kernel.
 
-Now login to Virtual Machine and install the windows with giving it login password.
+Now login to Virtual Machine and install the windows.
+<br>
+Do not set a password to your VM as it will create problems during automation.
 
 ```bash
 gvncviewer localhost
 ```
+
+When the Windows Installation is finished ***Create a partition of 10G. (A seperate Disk drive)***
+
+
 
 ## JSON File Creation using LibVMI vmi-win-guid tool and Volatility Framework
 
 Now we will create the JSON configuration file for the Windows domain. First, we need to get the debug information for the Windows kernel via the LibVMI vmi-win-guid tool. For example, in the following my domain is named windows7-sp1.
 
 ```bash
-$ sudo xl list
+sudo xl list
+```
+You will get an output like this -
+```bash
 Name                                        ID   Mem VCPUs	State	Time(s)
 Domain-0                                     0  4024     4     r-----     848.8
 windows7-sp1-x86                             7  3000     1     -b----      94.7
@@ -403,8 +388,8 @@ The ouput should look like this :
 Windows Kernel found @ 0x2604000
   Version: 32-bit Windows 7
   PE GUID: 4ce78a09412000
-  PDB GUID: f794d83b0f3c4b7980797437dc4be9e71     <---------
-  Kernel filename: ntkrpamp.pdb                   <---------
+  PDB GUID: f794d83b0f3c4b7980797437dc4be9e71       <---------
+  Kernel filename: ntkrpamp.pdb                     <---------
   Multi-processor with PAE (version 5.0 and higher)
   Signature: 17744.
   Machine: 332.
@@ -451,7 +436,7 @@ PDB GUID: f794d83b0f3c4b7980797437dc4be9e71
 Kernel filename: ntkrnlmp.pdb
 ```
 
-Now run the following commands from the by changing the paramater accordingly to create LibVMI config with Rekall profile:
+Now run the following commands from the by changing the paramater accordingly and providing the correct PDB guid and Kernal filename to create LibVMI config profile:
 
 ```bash
 cd /tmp
@@ -459,7 +444,7 @@ python3 ~/drakvuf/volatility3/volatility3/framework/symbols/windows/pdbconv.py -
 sudo mv windows7-sp1.json /root
 ```
 
-Now generate the reakall profile.
+## Generate the LibVMI profile.
 
 ```bash
 sudo su
@@ -467,13 +452,13 @@ printf "windows7-sp1 {\n\tvolatility_ist = \"/root/windows7-sp1.json\";\n}" >> /
 exit
 ```
 
-Now build the drakvuf using the following commands
+## Build the DRAKVUF using the following commands
 
 ```bash
 cd ~/drakvuf
 autoreconf -vi
 ```
-In Windows 7 "***Etwmon plugin***" fails , therefore we need to disable this plugin while configuration. This plugin works fine with Windows 10 so no need to disable it.
+In Windows 7 "***Etwmon plugin***" fails , therefore we need to disable this plugin while configuration. This plugin works fine with Windows 10 so no need to disable it if using a windows 10.
 
 ```bash
 CC=clang ./configure --enable-debug --disable-plugin-etwmon
@@ -483,39 +468,38 @@ Run ```make``` command to finalize the build
 make
 ```
 
-Run the following to check if LibVMI is properly configured with the VM.\
+Run the following to check if LibVMI is properly configured with the VM.<br>
 As an output you will get the PID's of the processes runing in your VM.
 
+***Note- Make sure your VM is running and logged in to desktop.***
 
 ```bash
 sudo vmi-process-list windows7-sp1
 ```
 
+## Now test if DRAKVUF is correctly generating system logs.
 
-When the Windows Installation is finished, follow the following step.
-
-1. Create a partition of 10G. (A seperate Disk drive)
-2. Turn all the firewall off.
-3. Create a restore point using the newly created partition (new drive) // Search for “create a restore point” in windows start menu.
-4. Goto My Computer --> Right click on new volume you have created --> Security --> provide the full control to all the users.
-
-![Installation](/images/restore1.png)
-
-![Installation](/images/restore2.png)
-
-![Installation](/images/window1.png)
-
-![Installation](/images/window2.png)
-
-## Program Execution Tracing Log Generation using Drakvuf
-
-- System tracing:
+***NOTE: Every DRAKVUF relate command execute only when your terminal path in in 'drakvuf' folder.***
 
 ```bash
+cd ~/drakvuf
 sudo ./src/drakvuf -r /root/windows7-sp1.json -d id
 ```
+You can stop the command by using 'Ctrl+C'. Avoid using 'Ctrl+X' as it freezes the VM.
 
 Here, id of virtual machine (use sudo xl list command)
+
+<br>
+
+## Post DRAKVUF steps
+
+1. 
+2. 
+3. 
+4. 
+
+
+## Program Execution Tracing Log Generation using Drakvuf
 
 - Malware Tracing Command
 
@@ -525,19 +509,14 @@ sudo ./src/drakvuf -r /root/windows7-sp1.json -d 1 -x socketmon -t 120 -i 1300 -
 
 Here,
 
-1300 = change according to pid of explorer.exe
-1= id of virtual machine (use sudo xl list command)
-“E:\\zbot\\zbot_1.exe”= Location of malware ".exe" file in the created windows VM.
+1300 = change according to pid of explorer.exe (This PID is of File explorer and not Internet explorer.)<br>
+1= id of virtual machine (use sudo xl list command)<br>
+“E:\\zbot\\zbot_1.exe”= Location of malware ".exe" file in the created windows VM.<br>
 zbot_1.txt= Location of the output file. By default is drakvuf location.
 
-- Network Tracing
+<br>
 
-```bash
-ping -n 10000 www.google.com(from cmd of VM)
-sudo tcpdump -w "zbot_1.pcap" -i vif1.0-emu   (can be obtained from brctl show)
-```
-
-#### Other Commmands
+#### Usefull Commmands
 
 Xen version:
 
@@ -545,22 +524,10 @@ Xen version:
 sudo xen-detect
 ```
 
-List of VMs:
+List all domains:
 
 ```bash
 sudo xl list
-```
-
-Destroy VM:
-
-```bash
-sudo xl destroy id
-```
-
-VM boot:
-
-```bash
-gvncviewer localhost
 ```
 
 CREATE VM:
@@ -569,6 +536,19 @@ CREATE VM:
 sudo xl create /etc/xen/win7.cfg
 ```
 
+Connect to QEMU to get VM display:
+
+```bash
+gvncviewer localhost
+```
+
+(This command does not boots up your VM instead it just open a QEMU emulator and connects it to localhost for VM display.)
+
+Destroy VM forcefully:
+
+```bash
+sudo xl destroy id
+```
 
 Debug output: (With process injection)
 
@@ -576,8 +556,12 @@ Debug output: (With process injection)
 sudo ./src/drakvuf -r /root/windows7-sp1.json -d 1 -x socketmon -t 120 -i 1300 -e “E:\\zbot\\zbot_1.exe” -v 1> zbot_1.txt
 ```
 
-Note: Retype all the quotes from the keyboard in the terminal before running the command
-Here,
+<br>
 
-1300 = change according to pid of explorer.exe
-1= id of virtual machine (use sudo xl list command)
+### All XEN and DRAKVUF commands
+XEN - [XEN project](https://xenbits.xen.org/docs/unstable/man/xl.1.html)
+
+DRAKVUF -
+```bash
+./src/drakvuf --help
+```
