@@ -487,7 +487,7 @@ sudo ./src/drakvuf -r /root/windows7-sp1.json -d id
 ```
 You can stop the command by using 'Ctrl+C'. Avoid using 'Ctrl+X' as it freezes the VM.
 
-Here, id of virtual machine (use sudo xl list command)
+To get id of virtual machine (use sudo xl list command).
 
 <br>
 
