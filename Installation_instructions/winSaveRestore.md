@@ -13,14 +13,14 @@ sudo lvremove windows7-sp1 vg
 
 <img title="Image 1" alt="Figure 1" src="/Installation_instructions/images/disks.png" width="650" height="500">
 
-<img title="Image 2" alt="Figure 2" src="/Installation_instructions/images/disks4.png" width="650" height="500">
+<img title="Image 2" alt="Figure 2" src="/Installation_instructions/images/disks2.png" width="650" height="500">
 
-<img title="Image 3" alt="Figure 3" src="/Installation_instructions/images/disks2.png" width="650" height="500">
-
-
+<img title="Image 3" alt="Figure 3" src="/Installation_instructions/images/disks3.png" width="650" height="500">
 
 
-<img title="Image 4" alt="Figure 4" src="/Installation_instructions/images/disks3.png" width="650" height="500">
+
+
+<img title="Image 4" alt="Figure 4" src="/Installation_instructions/images/disks4.png" width="650" height="500">
 
 - It will start formatting partition 4.
 
