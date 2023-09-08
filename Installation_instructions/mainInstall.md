@@ -160,6 +160,9 @@ Create logical volume group. You can specify the size, here we allocating 100 GB
 ```bash
 sudo lvcreate -L100G -n windows7-sp1 vg
 ```
+<br>
+
+#### Note: Sometimes VM may get corupted due to some reason, in this case we just need to remove that logical volume and create it again. [Guide to re-create VM](/Installation_instructions/vmCreation.md)
 
 ## Check the VMM Utility tool And Networking tool.
 
@@ -341,7 +344,7 @@ python3 ./setup.py build
 sudo python3 ./setup.py install
 ```
 
-## Create VM and Configure VM from DOM0
+## Create VM and Configure VM from DOM0 for Windows installation
 
 Last step of this configuration is to create Windows 7 VM using the following command.
 
@@ -358,6 +361,8 @@ Do not set a password to your VM as it will create problems during automation.
 ```bash
 gvncviewer localhost
 ```
+
+**Perform Windows installation until you are booted to the desktop. You will need to run xl create and gvncviewer command 2-3 times.**
 
 When the Windows Installation is finished ***Create a partition of 10G. (A seperate Disk drive)***
 
@@ -493,10 +498,16 @@ To get id of virtual machine (use sudo xl list command).
 
 ## Post DRAKVUF steps
 
-1. 
-2. 
-3. 
-4. 
+After you have setup Xen, DRAKVUF and Windows, we need to create a proper environment to run and analyse malware logs. For setting up the system for automatic log generation we need to perform the following steps: 
+
+1. Install different softwares e.g. Chrome browser, some compilers, Microsoft .NET framework, setup windows media player, etc. The main point is to make the VM look like a actual physicall machine. Also many of malware executables requires some other applications to run on. 
+2. After you have installed all the softwares and packages you need to make it vulnerable purposely. This is done by Disabling Windows defender, update and firewall and also making changer to UAC policies. This step is important for executing malware without failure and in admin aproval. <br> ***You can refer to this guide to make your VM vulnerable.*** <br> [Guide for making VM vulnerable](/Installation_instructions/winVulnerable.md)
+3. Now make a snapshot of your non infected VM and store it in drakvuf folder. This step is necessary so each executable is injected on a fresh instance of the VM and memory traces of previous executable is removed. <br> ***You can refer to this guide to create snapshot of your VM.*** <br> [Guide for creating snapshot of VM]()
+
+<br>
+
+#### Note: Sometimes VM may get corupted due to some reason, in this case we just need to remove that logical volume and create it again. [Guide to re-create VM](/Installation_instructions/vmCreation.md)
+
 
 
 ## Program Execution Tracing Log Generation using Drakvuf
@@ -561,7 +572,8 @@ sudo ./src/drakvuf -r /root/windows7-sp1.json -d 1 -x socketmon -t 120 -i 1300 -
 ### All XEN and DRAKVUF commands
 XEN - [XEN project](https://xenbits.xen.org/docs/unstable/man/xl.1.html)
 
-DRAKVUF -
+DRAKVUF - [Website](https://drakvuf.com/)<br>
+CLI help:
 ```bash
 ./src/drakvuf --help
 ```
