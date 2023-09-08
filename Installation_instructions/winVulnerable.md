@@ -75,7 +75,7 @@ This is a guide for making windows vulnerable for successful execution of malwar
 <img title="Image 16" alt="Figure 16" src="/Installation_instructions/images/group-edit4.PNG" width="650" height="500">
 
 - Changes to edit policy is done.
-- Now restart your windows.
+- Finally restart windows.
 - Windows is now vulnerable and ready for malware execution.
 
 
