@@ -1,6 +1,6 @@
 # Guide For Making Windows Vulnerable
 
-Some introduction.....
+This is a guide for making windows vulnerable for successful execution of malware. This is generally done by *"Cyber Security Researchers"* for *"Malware Analysis"*.  
 
 ## Step 1: Disable Windows Firewall And Defender.
 
