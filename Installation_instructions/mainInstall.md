@@ -250,7 +250,7 @@ The networking service can now be set to start automatically whenever the system
 
 ## Download link for Windows iso:
 
-Before proceeding furthur we need 64-bit windows 7 iso image. You can download from anywhere or can find the already tested image from <a href="https://drive.google.com/drive/folders/1DPBfN2B1LzVWRNDHC8sLFfAl7WrJlGP6?usp=drive_link" target="_blank">HERE</a>
+Before proceeding furthur we need 64-bit windows 7 iso image. You can download from anywhere or can find the already tested image from <a href="https://drive.google.com/drive/folders/1DPBfN2B1LzVWRNDHC8sLFfAl7WrJlGP6?usp=sharing" target="_blank">HERE</a>
 
 ## VM Creation and Configuration
 
