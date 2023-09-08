@@ -9,7 +9,7 @@
 sudo lvremove windows7-sp1 vg
 ```
 
-## Step 2: Navigate to Disks, select partition 4, access aditional settings, choose format partition as shown in below images.
+## Step 2: Navigate to Disks, select partition, access aditional settings, choose format partition as shown in below images.
 
 <img title="Image 1" alt="Figure 1" src="/Installation_instructions/images/disks.png" width="650" height="500">
 
@@ -22,9 +22,11 @@ sudo lvremove windows7-sp1 vg
 
 <img title="Image 4" alt="Figure 4" src="/Installation_instructions/images/disks4.png" width="650" height="500">
 
-- It will start formatting partition 4.
+- It will start formatting the partition.
 
-### Step 3: After successfully formatting the partition 4, open terminal and run following commands:
+### Step 3: After successfully formatting the partition, open terminal and run following commands:
+
+**Note :** Here *"sda4"* is the partition id, Verify your sda partition id from Disks.
 
 ```
 sudo pvcreate /dev/sda4
