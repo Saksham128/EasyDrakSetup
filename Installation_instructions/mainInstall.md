@@ -172,7 +172,7 @@ sudo lvcreate -L100G -n windows7-sp1 vg
 
 
 
-## Newtworking Configuration
+## Networking Configuration
 
 Next we need to set up our system so that we can attach virtual machines to the external network. This is done by creating a virtual switch within dom0. The switch will take packets from the virtual machines and forward them on to the physical network so they can see the internet and other machines on your network.
 
@@ -192,7 +192,7 @@ This file is very simple. Each stanza represents a single interface.
 
 Breaking it down,
 
-1. “auto eth0” meeans that eth0 will be configured when ifup -a is run (which happens at boot time). This means that the interface will automatically be started/stopped for you. ("eth0 is its traditional name - you'll probably see something more current like "ens1", "en0sp2" or even "enx78e7d1ea46da")
+1. “auto eth0” means that eth0 will be configured when ifup -a is run (which happens at boot time). This means that the interface will automatically be started/stopped for you. ("eth0 is its traditional name - you'll probably see something more current like "ens1", "en0sp2" or even "enx78e7d1ea46da")
 
 2. “iface eth0” then describes the interface itself. In this case, it specifies that it should be configured by DHCP - we are going to assume that you have DHCP running on your network for this guide. If you are using static addressing you probably know how to set that up.
 
@@ -381,13 +381,13 @@ You will get an output like this -
 ```bash
 Name                                        ID   Mem VCPUs	State	Time(s)
 Domain-0                                     0  4024     4     r-----     848.8
-windows7-sp1-x86                             7  3000     1     -b----      94.7
+windows7-sp1                                 7  3000     1     -b----      94.7
 ```
 
 Get the debug information.
 
 ```bash
-sudo vmi-win-guid name windows7-sp1-x86
+sudo vmi-win-guid name windows7-sp1
 ```
 
 The ouput should look like this : 
@@ -514,7 +514,7 @@ After you have setup Xen, DRAKVUF and Windows, we need to create a proper enviro
 
 ## Program Execution Tracing Log Generation using Drakvuf
 
-- Malware Tracing Command
+- **Malware Tracing Command**
 
 ```bash
 sudo ./src/drakvuf -r /root/windows7-sp1.json -d 1 -x socketmon -t 120 -i 1300 -e “E:\\zbot\\zbot_1.exe” > zbot_1.txt
@@ -526,6 +526,12 @@ Here,
 1= id of virtual machine (use sudo xl list command)<br>
 “E:\\zbot\\zbot_1.exe”= Location of malware ".exe" file in the created windows VM.<br>
 zbot_1.txt= Location of the output file. By default is drakvuf location.
+
+- **Injecting and executing executables directly from host(dom0)**
+
+```bash
+sudo ./src/drakvuf -r /root/windows7-sp1.json -d 1 -x socketmon -t 120 -i 1300 --write-file /var/LearnStreamlit/analysis/uploaded/$file_name E://$file_name -e E://$file_name > /var/LearnStreamlit/analysis/logs/memorylogs/executed/${file_name%.exe}.txt
+```
 
 <br>
 
