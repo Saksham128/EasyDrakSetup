@@ -85,7 +85,7 @@ gvncviewer localhost
 
  - Install and Setup the windows.
 
-<img title="Image 5" alt="windows installation" src="/Installation_instructions/images/windows.png" width="500" height="350"> <img title="Image 6" alt="windows installation" src="/Installation_instructions/images/windows_desktop.PNG" width="500" height="350"> 
+<img title="Image 5" alt="windows installation" src="/Installation_instructions/images/windows.png" width="500" height="350"> <img title="Image 6" alt="windows installation" src="/Installation_instructions/images/windows_desktop.png" width="500" height="350"> 
 
 
 - VM is successfully created.
