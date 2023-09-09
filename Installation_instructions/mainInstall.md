@@ -139,9 +139,8 @@ Note: Before creating physical volume (PV), Go inside Disk partition and create 
 
 List the empty disk using the following command:
 
-```bash
-lsblk
-```
+<img title="Installation Type" alt="Select 'something else' option." src="/Installation_instructions/images/disk.png" width="500" height="350"> <img title="Installation Type" alt="Select 'something else' option." src="/Installation_instructions/images/ds.png" width="500" height="350">
+
 
 Create physical volume. Hera "sda" is disk volume, it can vary accordingly.
 
