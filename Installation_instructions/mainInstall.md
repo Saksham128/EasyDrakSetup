@@ -51,7 +51,7 @@ Now install the required Dependencies.
 sudo apt-get install wget git bcc bin86 gawk bridge-utils iproute2 libcurl4-openssl-dev bzip2 libpci-dev build-essential make gcc clang libc6-dev linux-libc-dev zlib1g-dev libncurses5-dev patch libvncserver-dev libssl-dev libsdl-dev iasl libbz2-dev e2fslibs-dev git-core uuid-dev ocaml libx11-dev bison flex ocaml-findlib xz-utils gettext libyajl-dev libpixman-1-dev libaio-dev libfdt-dev cabextract libglib2.0-dev autoconf automake libtool libjson-c-dev libfuse-dev liblzma-dev autoconf-archive kpartx python3-dev python3-pip golang python-dev libsystemd-dev nasm ninja-build lvm2 bridge-utils net-tools virt-manager gvncviewer -y
 ```
 
-pip3 command is used to install those dependency packages which old and cannot be installed from apt command.
+pip3 command is used to install those dependency packages which are old and cannot be installed from apt command.
 
 ```bash
 sudo pip3 install pefile construct
@@ -135,12 +135,12 @@ Domain-0                                       0  4096     2       r-----    614
 ## Logical Volume Manager(LVM Setup)
 
 
-Note: Before creating physical volume (PV), Go inside Disk partition and create a volume. Never give the whole path of disk like /dev/sda otherwise your os will be crashed down. So when you will create a volume then it has named like /dev/sd2 or /dev/sd3 and so on. So pick only a free volume then move ahead.
+Note: Before creating physical volume (PV), Go inside Disk partition and create a volume. Never give the whole path of disk like /dev/sda otherwise your os will be crashed down. So when you will create a volume then it has named like /dev/sd2 or /dev/sd3 and so on. So pick only a free volume that you have made for windows then move ahead.
 
-List the empty disk using the following command:
+1. Create partition of the free space that you left for windows installation.
+2. Note down the partition ID (In this case: sda4).
 
 <img title="Installation Type" alt="Select 'something else' option." src="/Installation_instructions/images/disk.png" width="500" height="350"> <img title="Installation Type" alt="Select 'something else' option." src="/Installation_instructions/images/ds.png" width="500" height="350">
-
 
 Create physical volume. Hera "sda" is disk volume, it can vary accordingly.
 
