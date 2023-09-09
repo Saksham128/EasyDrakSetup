@@ -36,7 +36,7 @@ This is a guide for making windows vulnerable for successful execution of malwar
 
 <img title="Image 8" alt="Figure 8" src="/Installation_instructions/images/firewall2.PNG" width="650" height="500">
 
-- Select turn off windows firewall on both *"Home and Public network location settings"*.
+- Select turn off windows firewall on both *"Home and Public network location settings"* and click ok.
 
 <img title="Image 9" alt="Figure 9" src="/Installation_instructions/images/firewall3.PNG" width="650" height="500">
 
