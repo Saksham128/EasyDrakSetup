@@ -159,13 +159,16 @@ Create logical volume group. You can specify the size, here we allocating 100 GB
 ```bash
 sudo lvcreate -L100G -n windows7-sp1 vg
 ```
-<br>
 
 #### Note: Sometimes VM may get corupted due to some reason, in this case we just need to remove that logical volume and create it again. [Guide to re-create VM](/Installation_instructions/vmCreation.md)
 
+<br>
+
 ## Check the VMM Utility tool And Networking tool.
 
+#### ***Double check in Ubuntu store if Virtual Machine Manager is Installed***
 
+<img title="Installation Type" alt="Select 'something else' option." src="/Installation_instructions/images/VMM.png" width="650" height="500">
 
 
 
