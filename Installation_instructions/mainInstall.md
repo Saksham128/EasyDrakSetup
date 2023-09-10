@@ -514,24 +514,25 @@ After you have setup Xen, DRAKVUF and Windows, we need to create a proper enviro
 
 ## Program Execution Tracing Log Generation using Drakvuf
 
-- **Malware Tracing Command**
+- **Malware Tracing Command (If file is already present inside the VM)**
 
 ```bash
-sudo ./src/drakvuf -r /root/windows7-sp1.json -d 1 -x socketmon -t 120 -i 1300 -e “E:\\zbot\\zbot_1.exe” > zbot_1.txt
+sudo ./src/drakvuf -r /root/windows7-sp1.json -d 1 -x socketmon -t 120 -i 1300 -e “E://zbot.exe” > output.txt
 ```
-
-Here,
-
-1300 = change according to pid of explorer.exe (This PID is of File explorer and not Internet explorer.)<br>
-1= id of virtual machine (use sudo xl list command)<br>
-“E:\\zbot\\zbot_1.exe”= Location of malware ".exe" file in the created windows VM.<br>
-zbot_1.txt= Location of the output file. By default is drakvuf location.
 
 - **Injecting and executing executables directly from host(dom0)**
 
 ```bash
-sudo ./src/drakvuf -r /root/windows7-sp1.json -d 1 -x socketmon -t 120 -i 1300 --write-file /var/LearnStreamlit/analysis/uploaded/$file_name E://$file_name -e E://$file_name > /var/LearnStreamlit/analysis/logs/memorylogs/executed/${file_name%.exe}.txt
+sudo ./src/drakvuf -r /root/windows7-sp1.json -d 1 -x socketmon -t 120 -i 1300 --write-file /home/pc-03/Desktop/npp.exe E://zbot.exe -e E://zbot.exe > /home/pc-03/Desktop/output.txt
 ```
+Here,
+
+1= ID of virtual machine (use sudo xl list command).<br>
+120 = Time duration of log generation in seconds.<br>
+1300 = change according to pid of explorer.exe (This PID is of File explorer and not Internet explorer).<br>
+***--write-file <absolute/path/of/file/to/be/copied/to/VM> <path/where/file/will/be/stored>***<br>
+“E://zbot.exe”= Location of ".exe" file in the created windows VM.<br>
+output.txt= Location of the output file. By default is drakvuf location.
 
 <br>
 
