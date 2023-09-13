@@ -42,4 +42,6 @@ Creating a save-point or snapshot is an important step for proper generating log
   snapshot.sav = Name of the save file. <br>
   /etc/xen/win7.cfg = Absolute path of VM's configuration file. <br>
   
-  <img title="Snapshot creation" alt="Snapshot creation" src="/Installation_instructions/images/vmSave.png" width="650" height="500">
+  <img title="Snapshot creation" alt="Snapshot creation" src="/Installation_instructions/images/vmSave.png" width="750" height="350">
+  <img title="snapshot.sav" alt="snapshot.sav" src="/Installation_instructions/images/fss.png" width="650" height="500">
+
