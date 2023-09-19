@@ -9,7 +9,7 @@
 sudo lvremove windows7-sp1 vg
 ```
 
-## Step 2: Navigate to Disks, select partition, access aditional settings, choose format partition as shown in below images.
+## Step 2: Navigate to Disks, select partition, access additional settings, choose format partition as shown in below images.
 
 <img title="Image 1" alt="Figure 1" src="/Installation_instructions/images/disks.png" width="650" height="500">
 
@@ -37,7 +37,7 @@ sudo vgcreate vg /dev/sda4
 ```
 
 ```
-sudo lvcreate -L110G -n windows7-sp1 vg
+sudo lvcreate -L100G -n windows7-sp1 vg
 ```
 
 ```
