@@ -77,8 +77,22 @@ This is a guide for making windows vulnerable for successful execution of malwar
 - Changes to edit policy is done.
 
 ## Step 3: Give Full Permission Control To *"E"* Drive
-- Finally restart windows.
+
+- Right click on New Volume(E:) then click on properties.
+
+<img title="Image 17" alt="Figure 17" src="/Installation_instructions/images/Picture1.png" width="650" height="500">
+
+- Click on security then select edit.
+
+<img title="Image 18" alt="Figure 18" src="/Installation_instructions/images/Picture2.png" width="650" height="500">
+
+- Now click on each “user names” and allow “Full control” for all “user names”, then apply and hit ok.
+
+<img title="Image 19" alt="Figure 19" src="/Installation_instructions/images/Picture3.png" width="650" height="500">
+
+- Finally restart the windows.
 - Windows is now vulnerable and ready for malware execution.
+
 
 
 
