@@ -2,9 +2,9 @@
 
 This repository contains the installation procedure of the DRAKVUF and an automated installation debian package. DRAKVUF is a VMI based black-box malware analysis tool that allows the execution of the malware binaries without using any third party tools. It uses the XEN Hypervisor which is installed in the DOM0 environment and Analysis part of the malware is done in the DOM1, DOM2 and so on.
 
-# Drakvuf Installation
+# DRAKVUF Installation
 
-Drakvuf is a black box binary dynamic malware analysis tool. It works on the principle of the VMI (Virtual Machine Introspection).
+DRAKVUF is a black box binary dynamic malware analysis tool. It works on the principle of the VMI (Virtual Machine Introspection).
 
 1. Make sure to disable the "Secure Boot" from the BIOS.
 2. While Installating the ubuntu make at least 100 GB space free for LVM group.
@@ -20,9 +20,9 @@ Drakvuf is a black box binary dynamic malware analysis tool. It works on the pri
 
 ## Operating System Configuration
 
-- Before installing the drakvuf you have to make sure, that partition in the system for the LVM and system space.
+- Before installing the DRAKVUF you have to make sure, that partition in the system for the LVM and system space.
 
-- In Installation type, select the "Something else option.
+- In Installation type, select the "Something else" option.
 
 <img title="Installation Type" alt="Select 'something else' option." src="/Installation_instructions/images/3.png" width="650" height="500">
 
@@ -57,9 +57,9 @@ pip3 command is used to install those dependency packages which are old and cann
 sudo pip3 install pefile construct
 ```
 
-## Cloning of Drakvuf from Official repository
+## Cloning of DRAKVUF from Official repository
 
-Cloning the Drakvuf directory from the official Github Repository.
+Cloning the DRAKVUF directory from the official Github Repository.
 
 ```bash
 cd ~
@@ -160,7 +160,7 @@ Create logical volume group. You can specify the size, here we allocating 100 GB
 sudo lvcreate -L100G -n windows7-sp1 vg
 ```
 
-#### Note: Sometimes VM may get corupted due to some reason, in this case we just need to remove that logical volume and create it again. [Guide to re-create VM](/Installation_instructions/vmCreation.md)
+#### Note: Sometimes VM may get corrupted due to some reason, in this case we just need to remove that logical volume and create it again. [Guide to re-create VM](/Installation_instructions/vmCreation.md)
 
 <br>
 
@@ -443,7 +443,7 @@ PDB GUID: f794d83b0f3c4b7980797437dc4be9e71
 Kernel filename: ntkrnlmp.pdb
 ```
 
-Now run the following commands from the by changing the paramater accordingly and providing the correct PDB guid and Kernal filename to create LibVMI config profile:
+Now run the following commands by changing the paramaters accordingly and providing the correct PDB guid and Kernal filename to create LibVMI config profile:
 
 ```bash
 cd /tmp
@@ -476,7 +476,7 @@ make
 ```
 
 Run the following to check if LibVMI is properly configured with the VM.<br>
-As an output you will get the PID's of the processes runing in your VM.
+As an output you will get the PID's of the processes running in your VM.
 
 ***Note- Make sure your VM is running and logged in to desktop.***
 
@@ -502,8 +502,8 @@ To get id of virtual machine (use sudo xl list command).
 
 After you have setup Xen, DRAKVUF and Windows, we need to create a proper environment to run and analyse malware logs. For setting up the system for automatic log generation we need to perform the following steps: 
 
-1. Install different softwares e.g. Chrome browser, some compilers, Microsoft .NET framework, setup windows media player, etc. The main point is to make the VM look like a actual physicall machine. Also many of malware executables requires some other applications to run on. 
-2. After you have installed all the softwares and packages you need to make it vulnerable purposely. This is done by Disabling Windows defender, update and firewall and also making changer to UAC policies. This step is important for executing malware without failure and in admin aproval. <br> ***You can refer to this guide to make your VM vulnerable.*** <br> [Guide for making VM vulnerable](/Installation_instructions/winVulnerable.md)
+1. Install different softwares e.g. Chrome browser, some compilers, Microsoft .NET framework, setup windows media player, etc. The main point is to make the VM look like a actual physical machine. Also many of malware executables requires some other applications to run on. 
+2. After you have installed all the softwares and packages you need to make it vulnerable purposely. This is done by disabling Windows defender, update and firewall and also making changes to UAC policies. This step is important for executing malware without failure and in admin approval. <br> ***You can refer to this guide to make your VM vulnerable.*** <br> [Guide for making VM vulnerable](/Installation_instructions/winVulnerable.md)
 3. Now make a snapshot of your non infected VM and store it in drakvuf folder. This step is necessary so each executable is injected on a fresh instance of the VM and memory traces of previous executable is removed. <br> ***You can refer to this guide to create snapshot of your VM.*** <br> [Guide for creating snapshot of VM](/Installation_instructions/vmSnapshotRestore.md)
 
 <br>
@@ -512,7 +512,7 @@ After you have setup Xen, DRAKVUF and Windows, we need to create a proper enviro
 
 
 
-## Program Execution Tracing Log Generation using Drakvuf
+## Program Execution Tracing Log Generation using DRAKVUF
 
 - **Malware Tracing Command (If file is already present inside the VM)**
 
@@ -532,7 +532,7 @@ Here,
 1300 = change according to pid of explorer.exe (This PID is of File explorer and not Internet explorer).<br>
 ***--write-file <absolute/path/of/file/to/be/copied/to/VM> <path/where/file/will/be/stored>***<br>
 “E://zbot.exe”= Location of ".exe" file in the created windows VM.<br>
-output.txt= Location of the output file. By default is drakvuf location.
+output.txt= Location of the output file. By default it is drakvuf folder location.
 
 <br>
 
