@@ -142,7 +142,7 @@ Note: Before creating physical volume (PV), Go inside Disk partition and create 
 
 <img title="Installation Type" alt="Select 'something else' option." src="/Installation_instructions/images/disk.png" width="500" height="350"> <img title="Installation Type" alt="Select 'something else' option." src="/Installation_instructions/images/ds.png" width="500" height="350">
 
-Create physical volume. Hera "sda" is disk volume, it can vary accordingly.
+Create physical volume. Here "sda" is disk volume, it can vary accordingly.
 
 ```bash
 sudo pvcreate /dev/sda4
@@ -265,7 +265,7 @@ Next step is to edit the xen VM's configuration file.
 sudo gedit /etc/xen/win7.cfg
 ```
 
-This template is used for creating the Configurtion for Windows 7 VM from the download ISO file. You can modify the number of cpu, max memory, VM behaviour and other system tuning.
+This template is used for creating the Configuration for Windows 7 VM from the download ISO file. You can modify the number of cpu, max memory, VM behaviour and other system tuning.
 
 ```bash
 arch = 'x86_64'
@@ -508,7 +508,7 @@ After you have setup Xen, DRAKVUF and Windows, we need to create a proper enviro
 
 <br>
 
-#### Note: Sometimes VM may get corupted due to some reason, in this case we just need to remove that logical volume and create it again. [Guide to re-create VM](/Installation_instructions/vmCreation.md)
+#### Note: Sometimes VM may get corrupted due to some reason, in this case we just need to remove that logical volume and create it again. [Guide to re-create VM](/Installation_instructions/vmCreation.md)
 
 
 
