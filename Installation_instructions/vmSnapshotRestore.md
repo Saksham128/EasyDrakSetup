@@ -1,6 +1,6 @@
 # VM Save-file/Snapshot creation 
 
-Creating a save-file or snapshot is an important step for properly generating logs. VM has to be retored to the previous clean state after execution of each malware executable. Restoring the VM to a fresh and clean state removes any instance of the previous executable from memory.
+Creating a save-file or snapshot is an important step for properly generating logs. VM has to be restored to the previous clean state after execution of each malware executable. Restoring the VM to a fresh and clean state removes any instance of the previous executable from memory.
 <br>
 
 ## VM Snapshot creation
@@ -60,7 +60,7 @@ Creating a save-file or snapshot is an important step for properly generating lo
   ```
 #### 2. Using xen command restore the snapshot of the VM
 
-- While retoring the absolute path of the config-file come first and then the snapshot name.
+- While restoring the absolute path of the config-file come first and then the snapshot name.
 
   ```bash
   sudo xl restore <vm's/config/file/loacation>  <snapshot-file-name>
